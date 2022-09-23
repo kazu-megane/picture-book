@@ -1,0 +1,158 @@
+.container {
+  min-height: 100vh;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  background-color: #000;
+  animation: fadeBackgroundIn 1s ease-in-out forwards;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  padding: 40px 16px 0;
+}
+
+.columns {
+  flex-grow: 1;
+  display: flex;
+  width: 100%;
+  min-height: 280px;
+  max-height: 35%;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid #808080;
+  visibility: hidden;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.leftColumn,
+.rightColumn {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // font-weight: bold;
+}
+
+.leftColumn {
+  background-color: #fff;
+}
+
+.rightColumn {
+  background-color: #000;
+  color: #fff;
+  border-style: solid;
+  border-color: #808080;
+  border-width: 0 1px 1px 0;
+}
+
+.leadText {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leadTextContent {
+  font-size: 16px;
+}
+
+.leadTextIcon {
+  margin-top: 16px;
+  font-size: 24px;
+  animation: upDown 2s ease-in-out infinite;
+}
+
+.target {
+  margin-top: 600px;
+  height: 500px;
+  width: 100%;
+}
+
+.caption {
+  display: flex;
+}
+
+.caption + .caption {
+  margin-top: 12px;
+}
+
+.captionHead {
+  width: 2rem;
+}
+
+.captionContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.captionContentText + .captionContentText {
+  margin-top: 4px;
+}
+
+.container.container--entering {
+  animation: fadeBackground 1s ease-in-out forwards;
+
+  .main {
+    animation: fade 1s ease-in-out forwards;
+  }
+}
+.container.container--entered {
+  background-color: #000;
+
+  .main {
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeBackgroundIn {
+  0% {
+    background-color: #000;
+  }
+  100% {
+    background-color: #fff;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeBackground {
+  0% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: #000;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

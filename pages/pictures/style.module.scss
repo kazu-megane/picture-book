@@ -1,8 +1,11 @@
 .container {
+  position: relative;
   min-height: 100vh;
   max-width: 1000px;
   margin: 0 auto;
   display: flex;
+  justify-content: center;
+  flex-direction: column;
   background-color: #000;
   animation: fadeBackground 1s ease-in-out forwards;
 }
@@ -51,6 +54,62 @@
   height: auto;
 }
 
+.bottom {
+  display: none;
+  position: absolute;
+  width: 100%;
+  top: calc(100% - 100px);
+
+  &.bottom--active {
+    display: block;
+  }
+}
+
+.leadText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leadTextContent {
+  font-size: 16px;
+}
+
+.leadTextIcon {
+  margin-top: 16px;
+  font-size: 24px;
+  animation: upDown 2s ease-in-out infinite;
+}
+
+.target {
+  margin-top: 600px;
+  height: 500px;
+  width: 100%;
+}
+
+.container.container--entering {
+  animation: fadeBackgroundEnd 1s ease-in-out forwards;
+
+  .bottom {
+    animation: fadeBackgroundEnd 1s ease-in-out forwards;
+  }
+
+  .main {
+    animation: fadeEnd 1s ease-in-out forwards;
+  }
+}
+.container.container--entered {
+  background-color: #000;
+
+  .bottom {
+    background-color: #000;
+  }
+
+  .main {
+    visibility: hidden;
+  }
+}
+
 @keyframes fadeBackground {
   0% {
     background-color: #000;
@@ -66,5 +125,37 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeBackgroundEnd {
+  0% {
+    background-color: #fff;
+  }
+  100% {
+    background-color: #000;
+  }
+}
+
+@keyframes fadeEnd {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
   }
 }

@@ -1,14 +1,24 @@
-import { useState } from "react";
+import classNames from "classnames";
+import { useState, useEffect } from "react";
+import { Transition } from "react-transition-group";
 import type { NextPage } from "next";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useInView } from "react-intersection-observer";
 import { url } from "../../utils";
 import styles from "./style.module.scss";
 
 import "@splidejs/react-splide/css";
 
 const Pictures: NextPage = () => {
+  const router = useRouter();
+  const [isFire, setIsFire] = useState(false);
   const [activeSlideNumber, setActiveSlideNumber] = useState(0);
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
   const contents: Array<{ image: string; texts: Array<string> }> = [
     {
       image: "p1",
@@ -116,57 +126,94 @@ const Pictures: NextPage = () => {
     },
   ];
 
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>テガミ</title>
-        <meta name="description" content="テガミ-あいかへ-" />
-      </Head>
+  useEffect(() => {
+    if (inView) {
+      setIsFire(true);
+    }
+  }, [inView]);
 
-      <main className={styles.main}>
-        <div>
-          <p className={styles.text}>
-            {contents[activeSlideNumber].texts.map((text, index) => {
-              if (index === 0) {
-                return text;
-              }
-              return (
-                <>
-                  <br />
-                  {text}
-                </>
-              );
-            })}
-          </p>
-          <Splide
-            aria-label="My Favorite Images"
-            options={{
-              pagination: false,
-              classes: {
-                prev: `splide__arrow--prev ${styles["arrow--prev"]}`,
-                next: `splide__arrow--next ${styles["arrow--next"]}`,
-              },
-            }}
-            onActive={(active) => {
-              setActiveSlideNumber(active.index);
-            }}
-            className={styles.splide}
-          >
-            {contents.map((content, index) => (
-              <SplideSlide key={index} className={styles.slide}>
-                <img
-                  src={url(`/images/${content.image}.gif`)}
-                  alt={`page${index + 1}`}
-                  width={1024}
-                  height={724}
-                  className={styles.image}
-                />
-              </SplideSlide>
-            ))}
-          </Splide>
+  return (
+    <Transition
+      in={isFire}
+      timeout={1000}
+      onEntered={() => {
+        router.push("/backcover");
+      }}
+    >
+      {(state) => (
+        <div
+          className={classNames(
+            styles.container,
+            styles[`container--${state}`]
+          )}
+        >
+          <Head>
+            <title>テガミ</title>
+            <meta name="description" content="テガミ-あいかへ-" />
+          </Head>
+
+          <main className={styles.main}>
+            <div>
+              <p className={styles.text}>
+                {contents[activeSlideNumber].texts.map((text, index) => {
+                  if (index === 0) {
+                    return text;
+                  }
+                  return (
+                    <>
+                      <br />
+                      {text}
+                    </>
+                  );
+                })}
+              </p>
+              <Splide
+                aria-label="My Favorite Images"
+                options={{
+                  pagination: false,
+                  classes: {
+                    prev: `splide__arrow--prev ${styles["arrow--prev"]}`,
+                    next: `splide__arrow--next ${styles["arrow--next"]}`,
+                  },
+                }}
+                onActive={(active) => {
+                  setActiveSlideNumber(active.index);
+                }}
+                className={styles.splide}
+              >
+                {contents.map((content, index) => (
+                  <SplideSlide key={index} className={styles.slide}>
+                    <img
+                      src={url(`/images/${content.image}.gif`)}
+                      alt={`page${index + 1}`}
+                      width={1024}
+                      height={724}
+                      className={styles.image}
+                    />
+                  </SplideSlide>
+                ))}
+              </Splide>
+            </div>
+          </main>
+          <footer>
+            <div
+              className={classNames(
+                styles.bottom,
+                activeSlideNumber + 1 === contents.length
+                  ? styles["bottom--active"]
+                  : ""
+              )}
+            >
+              <p className={styles.leadText}>
+                <span className={styles.leadTextContent}>下にスクロール</span>
+                <span className={styles.leadTextIcon}>↓</span>
+              </p>
+              <div ref={ref} className={styles.target}></div>
+            </div>
+          </footer>
         </div>
-      </main>
-    </div>
+      )}
+    </Transition>
   );
 };
 
