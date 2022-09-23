@@ -2,31 +2,16 @@ import { useState } from "react";
 import type { NextPage } from "next";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import Head from "next/head";
-import Image, { StaticImageData } from "next/image";
+import { url } from "../../utils";
 import styles from "./style.module.scss";
-import page1 from "../../statics/images/p1.gif";
-import page2 from "../../statics/images/p2.gif";
-import page3 from "../../statics/images/p3.gif";
-import page4 from "../../statics/images/p4.gif";
-import page5 from "../../statics/images/p5.gif";
-import page6 from "../../statics/images/p6.gif";
-import page7 from "../../statics/images/p7.gif";
-import page8 from "../../statics/images/p8.gif";
-import page9 from "../../statics/images/p9.gif";
-import page10 from "../../statics/images/p10.gif";
-import page11 from "../../statics/images/p11.gif";
-import page12 from "../../statics/images/p12.gif";
-import page13 from "../../statics/images/p13.gif";
-import page14 from "../../statics/images/p14.gif";
-import page15 from "../../statics/images/p15.gif";
 
 import "@splidejs/react-splide/css";
 
 const Pictures: NextPage = () => {
   const [activeSlideNumber, setActiveSlideNumber] = useState(0);
-  const contents: Array<{ image: StaticImageData; texts: Array<string> }> = [
+  const contents: Array<{ image: string; texts: Array<string> }> = [
     {
-      image: page1,
+      image: "p1",
       texts: [
         "突然だけど、",
         "今日はあいかの知らないボクの秘密を",
@@ -34,61 +19,61 @@ const Pictures: NextPage = () => {
       ],
     },
     {
-      image: page2,
+      image: "p2",
       texts: ["あいかとはときどきケンカもするし、正直ムカつくこともあります。"],
     },
     {
-      image: page3,
+      image: "p3",
       texts: [
         "でももしあいかが世界中を敵に回すようなことがあっても、",
         "ボクは絶対にキミの味方です。",
       ],
     },
     {
-      image: page4,
+      image: "p4",
       texts: ["あいかは、いつだってボクの夢を応援してくれます。"],
     },
     {
-      image: page5,
+      image: "p5",
       texts: [
         "だからもしあいかに挑戦したい夢があるのなら、",
         "ボクは全身全霊でキミをサポートします。",
       ],
     },
     {
-      image: page6,
+      image: "p6",
       texts: [
         "あいかは菩薩みたいな笑顔で笑ったかと思うと、",
         "突然般若のような顔で怒ります。",
       ],
     },
     {
-      image: page7,
+      image: "p7",
       texts: [
         "そのギャップも魅力の一つなんですが、",
         "どちらかというとボクは菩薩派です。",
       ],
     },
     {
-      image: page8,
+      image: "p8",
       texts: [
         "あいかは誰よりも落ち着く存在だから、",
         "ときどきそれに甘えてしまうボクがいます。",
       ],
     },
     {
-      image: page9,
+      image: "p9",
       texts: [
         "本当は一番伝えなきゃいけない「ありがとう」が",
         "なかなか言えなくてごめん。",
       ],
     },
     {
-      image: page10,
+      image: "p10",
       texts: ["ボクが好きになったのは", "あいかです。"],
     },
     {
-      image: page11,
+      image: "p11",
       texts: [
         "心優しいあいかも、",
         "理不尽なことで怒るあいかも、",
@@ -96,28 +81,28 @@ const Pictures: NextPage = () => {
       ],
     },
     {
-      image: page12,
+      image: "p12",
       texts: [
         "あいかが笑うと、ボクはとてもうれしいキモチになれます。",
         "泣いているときは、絶望的なキモチになります。",
       ],
     },
     {
-      image: page13,
+      image: "p13",
       texts: [
         "本当は知っているんです。",
         "幸せの正体は、大切な人を笑顔にできた実感なんだってこと。",
       ],
     },
     {
-      image: page14,
+      image: "p14",
       texts: [
         "恥ずかしくてなかなか口に出しては言えないけど、",
         "ボクにはあいかが必要です。",
       ],
     },
     {
-      image: page15,
+      image: "p15",
       texts: [
         "あいかと出会って1年半。",
         "色んな思い出を作ったね。",
@@ -169,9 +154,11 @@ const Pictures: NextPage = () => {
           >
             {contents.map((content, index) => (
               <SplideSlide key={index} className={styles.slide}>
-                <Image
-                  src={content.image}
+                <img
+                  src={url(`/images/${content.image}.gif`)}
                   alt={`page${index + 1}`}
+                  width={1024}
+                  height={724}
                   className={styles.image}
                 />
               </SplideSlide>

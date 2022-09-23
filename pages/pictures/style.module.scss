@@ -45,6 +45,11 @@
   }
 }
 
+.image {
+  max-width: 100%;
+  height: auto;
+}
+
 @keyframes fadeBackground {
   0% {
     background-color: #000;
