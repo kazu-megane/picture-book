@@ -38,8 +38,8 @@ const Home: NextPage = () => {
           )}
         >
           <Head>
-            <title>Cover</title>
-            <meta name="description" content="テガミ-cover-" />
+            <title>表紙</title>
+            <meta name="description" content="テガミ-表紙-" />
           </Head>
           <main className={styles.main}>
             <div className={styles.columns}>
