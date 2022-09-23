@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { Transition } from "react-transition-group";
 import Head from "next/head";
@@ -10,13 +11,20 @@ import "@splidejs/react-splide/css";
 
 const Home: NextPage = () => {
   const router = useRouter();
+  const [isFire, setIsFire] = useState(false);
   const { ref, inView } = useInView({
     threshold: 0,
   });
 
+  useEffect(() => {
+    if (inView) {
+      setIsFire(true);
+    }
+  }, [inView]);
+
   return (
     <Transition
-      in={inView}
+      in={isFire}
       timeout={1000}
       onEntered={() => {
         router.push("/pictures");

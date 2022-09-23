@@ -19,9 +19,10 @@
   position: absolute;
   transform: translateY(calc(-100% - 20px));
   padding: 0 16px;
-  line-height: 2;
+  line-height: 1.8;
   opacity: 0;
   animation: fade 1s 1s ease-in-out forwards;
+  letter-spacing: 0.5em;
 }
 
 .splide {

@@ -3,10 +3,6 @@
   max-width: 1000px;
   margin: 0 auto;
   display: flex;
-
-  &.container--entering {
-    animation: fade 1s ease-in-out;
-  }
 }
 
 .main {
@@ -63,12 +59,28 @@
 .leadTextIcon {
   margin-top: 16px;
   font-size: 24px;
+  animation: upDown 2s ease-in-out infinite;
 }
 
 .target {
-  margin-top: 800px;
-  height: 1px;
+  margin-top: 600px;
+  height: 500px;
   width: 100%;
+}
+
+.container.container--entering {
+  animation: fadeBackground 1s ease-in-out forwards;
+
+  .main {
+    animation: fade 1s ease-in-out forwards;
+  }
+}
+.container.container--entered {
+  background-color: #000;
+
+  .main {
+    visibility: hidden;
+  }
 }
 
 @keyframes turn {
@@ -83,11 +95,34 @@
   }
 }
 
-@keyframes fade {
+@keyframes fadeBackground {
   0% {
     background-color: #fff;
   }
   100% {
     background-color: #000;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
