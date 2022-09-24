@@ -45,25 +45,19 @@ const Home: NextPage = () => {
             <div className={styles.columns}>
               <div className={styles.leftColumn}>2022.09.24</div>
               <div className={styles.rightColumn}>
-                <ul className={styles.captions}>
-                  <li className={styles.caption}>
-                    <p className={styles.captionHead}>作</p>
-                    <p className={styles.captionContent}>
-                      <span className={styles.captionContentText}>
-                        橋本 和也
-                      </span>
-                    </p>
-                  </li>
-                  <li className={styles.caption}>
-                    <p className={styles.captionHead}>絵</p>
-                    <p className={styles.captionContent}>
-                      <span className={styles.captionContentText}>金井 淳</span>
-                      <span className={styles.captionContentText}>
-                        橋本 和也
-                      </span>
-                    </p>
-                  </li>
-                </ul>
+                <div>
+                  <p className={styles.title}>テガミ</p>
+                  <ul className={styles.captions}>
+                    <li className={styles.caption}>
+                      <p className={styles.captionHead}>作</p>
+                      <p className={styles.captionContent}>
+                        <span className={styles.captionContentText}>
+                          橋本 和也
+                        </span>
+                      </p>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
             <p className={styles.leadText}>
