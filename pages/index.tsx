@@ -1,10 +1,12 @@
 import classNames from "classnames";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { NextPage } from "next";
 import { Transition } from "react-transition-group";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useInView } from "react-intersection-observer";
+import { useUpdateEffect } from "../hooks";
+
 import styles from "./style.module.scss";
 
 import "@splidejs/react-splide/css";
@@ -16,7 +18,7 @@ const Home: NextPage = () => {
     threshold: 0,
   });
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (inView) {
       setIsFire(true);
     }

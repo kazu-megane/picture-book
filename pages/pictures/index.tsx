@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Transition } from "react-transition-group";
 import type { NextPage } from "next";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -7,6 +7,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useInView } from "react-intersection-observer";
 import { url } from "../../utils";
+import { useUpdateEffect } from "../../hooks";
 import styles from "./style.module.scss";
 
 import "@splidejs/react-splide/css";
@@ -126,7 +127,7 @@ const Pictures: NextPage = () => {
     },
   ];
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (inView) {
       setIsFire(true);
     }
